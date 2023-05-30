@@ -14,6 +14,7 @@ class Transaction(BaseModel):
     """
 
     id: Union[int, str] = Field(..., alias="payment_id")
+    description: str
     email: str
     amount: float
     amount_profit: float
