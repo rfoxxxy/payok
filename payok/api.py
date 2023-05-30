@@ -94,14 +94,14 @@ class PayOK(object):
 
     async def get_transactions(
         self,
-        payment_id: Optional[int] = None,
+        payment_id: Optional[Union[str, int]] = None,
         offset: Optional[int] = None,
         project_id: Optional[int] = None,
     ) -> List[Transaction]:
         """
         Get all matching transactions via API
 
-        :param Optional[int] payment_id: Filter by payment id
+        :param Optional[Union[str, int]] payment_id: Filter by payment id
         :param Optional[int] offset: Offset for pagination
         :param Optional[int] project_id: Project id, if not set, will be used project id from __init__
         :return List[Transaction]: List of transactions (can be empty)
@@ -168,7 +168,7 @@ class PayOK(object):
 
     async def create_bill(
         self,
-        pay_id: int,
+        pay_id: Union[str, int],
         amount: Union[int, float],
         currency: Union[Currency, str] = Currency.RUB,
         description: str = "Payment",
@@ -184,7 +184,7 @@ class PayOK(object):
         """
         Construct a Bill URL
 
-        :param int pay_id: Bill ID
+        :param Union[str, int] pay_id: Bill ID
         :param Union[int, float] amount: Bill amount
         :param str currency: Currency, defaults to "RUB"
         :param str description: Description, defaults to "Payment"
@@ -229,7 +229,6 @@ class PayOK(object):
         )
 
         if activate:
-            async with self.session.get(url):
-                pass
+            await self.session.get(url)
 
         return url

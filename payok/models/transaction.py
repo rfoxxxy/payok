@@ -23,7 +23,7 @@ class Transaction(BaseModel):
     method: str
     transaction: int
     date: datetime
-    pay_date: datetime = None
+    pay_date: datetime = Field(default=None)
     status: PayStatus = Field(PayStatus.waiting, alias="transaction_status")
     custom_fields: Optional[dict]
     webhook_status: WebhookStatus
@@ -34,6 +34,6 @@ class Transaction(BaseModel):
         return bool(self.status)
 
     @validator("custom_fields", pre=True)
-    def validate_fields(raw_field: str) -> dict:
+    def validate_fields(raw_field: str) -> dict:  # type: ignore
         string = raw_field.replace("&quot;", '"')
         return json.loads(string)

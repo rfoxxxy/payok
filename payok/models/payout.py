@@ -23,7 +23,7 @@ class Payout(BaseModel):
     status: PayStatus = Field(..., alias="payout_status_code")
 
     @validator("date_pay", "date_create", pre=True)
-    def validate_dates(date_str: str) -> Optional[datetime]:
+    def validate_dates(date_str: str) -> Optional[datetime]:  # type: ignore
         if not date_str:
             return
 
