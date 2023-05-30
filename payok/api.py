@@ -179,7 +179,7 @@ class PayOK(object):
         activate: bool = True,
         project_id: Optional[int] = None,
         project_secret: Optional[str] = None,
-        **custom_params,
+        custom_params: Optional[str] = None,
     ) -> str:
         """
         Construct a Bill URL
