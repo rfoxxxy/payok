@@ -2,6 +2,5 @@ from .base import BaseEnum
 
 
 class ComissionType(str, BaseEnum):
-
-    BALANCE = 'balance'
-    PAYMENT = 'payment'
+    BALANCE = "balance"
+    PAYMENT = "payment"
