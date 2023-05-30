@@ -18,7 +18,7 @@ class Transaction(BaseModel):
     email: str
     amount: float
     amount_profit: float
-    currency: Currency
+    currency: Union[Currency, str]
     comission_percent: float
     comission_fixed: float
     method: str
